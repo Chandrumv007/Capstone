@@ -1,0 +1,36 @@
+
+
+html,body { 
+	height: 100%; 
+}
+
+.global-container{
+	height:80vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #20803d;
+}
+.move{
+      float: left;
+}
+
+form{
+	padding-top: 10px;
+	font-size: 14px;
+	margin-top: 30px;
+}
+
+.card-title{ font-weight:300; }
+
+.btn{
+	font-size: 14px;
+	margin-top:20px;
+}
+
+
+.login-form{ 
+	width:330px;
+	margin:20px;
+}
+
