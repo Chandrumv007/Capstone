@@ -4,3 +4,10 @@
       z-index: 100
       ;
 }
+
+.admin{
+      background-color: rgba(21, 191, 233, 0.37)
+}
+.superadmin{
+      background-color: rgba(48, 14, 201, 0.151)
+}

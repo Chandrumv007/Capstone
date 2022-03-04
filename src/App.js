@@ -1,9 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import AdminCars from './components/AdminCars';
-import NavbarForAdmin from './components/NavbarForAdmin';
 import {useState } from 'react';
-import NavbarForSuperAdmin from './components/NavbarForSuperAdmin';
 import SuperAdminCar from './components/SuperAdminCar';
 import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
@@ -11,7 +9,7 @@ import SignupForm from './components/SignupForm';
 import Home from './components/Home';
 import SearchCarResults from './components/SearchCarResults';
 
-function App(props) {
+function App() {
   const [isUser, setisUser] = useState(true) 
   const [searchCarInfo, setsearchCarInfo] = useState([])
   const [searchError, setsearchError] = useState(false)
@@ -39,7 +37,6 @@ function App(props) {
             <Home />
           </Route>
         </Switch>
-
       </BrowserRouter>
     )
   }
@@ -48,11 +45,11 @@ function App(props) {
       <BrowserRouter>
         <Switch>
           <Route path="/admin">
-            <NavbarForAdmin setisUser={setisUser} />
+          <Navbar setisUser={setisUser} isUser={isUser} setsearchCarInfo={setsearchCarInfo} setsearchError={setsearchError} />
             <AdminCars />
           </Route>
           <Route path="/superadmin">
-            <NavbarForSuperAdmin setisUser={setisUser} />
+          <Navbar setisUser={setisUser} isUser={isUser} setsearchCarInfo={setsearchCarInfo} setsearchError={setsearchError} />
             <SuperAdminCar />
           </Route>
         </Switch>

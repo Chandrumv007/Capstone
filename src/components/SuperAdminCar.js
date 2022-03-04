@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Card, CardGroup, Col, ListGroupItem, Row, ListGroup } from 'react-bootstrap'
 import axios from 'axios';
+import './Navbar.css'
 
 function SuperAdminCar() {
       const [carsInfo, setcarsInfo] = useState([])
@@ -39,7 +40,7 @@ function SuperAdminCar() {
 
       return (
             <div>
-                  <CardGroup className='bg-secondary bg-gradient'>
+                  <CardGroup className='superadmin'>
                         <Row >
                               {carsInfo.map((car, index) => {
                                     getSteering()
@@ -74,4 +75,4 @@ function SuperAdminCar() {
       )
 }
 
-export default SuperAdminCar
+export default memo(SuperAdminCar)

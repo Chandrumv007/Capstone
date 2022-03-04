@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Card, ListGroup, ListGroupItem, CardGroup, Row, Col } from 'react-bootstrap'
 import AddCarInfoModal from './AddCarInfoModal';
 import EditCarInfoModal from './EditCarInfoModel';
+import './Navbar.css';
 
 
 
@@ -75,7 +76,7 @@ function AdminCars(props) {
       
 
       return (
-            <div className='bg-primary bg-gradient'>
+            <div className=' admin'>
                   <h1 style={{position: "relative",alignItems:"center" }}><button onClick={() => { setaddModelShow(true) }} className='btn btn-secondary'>Add Car Info</button></h1>
                   <CardGroup >
                         <Row >
@@ -133,4 +134,4 @@ function AdminCars(props) {
 
 
 
-export default AdminCars
+export default memo(AdminCars)
