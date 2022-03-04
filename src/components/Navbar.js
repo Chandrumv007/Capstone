@@ -40,7 +40,6 @@ function NavBar(props) {
                         props.history.push("/search")
                   }
             } catch (error) {
-                  alert("server problem please try later")
                   console.log(error)
             }
 

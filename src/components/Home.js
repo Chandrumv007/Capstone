@@ -21,7 +21,6 @@ function Home() {
                         alert(res.data.message)
                   }
             } catch (error) {
-                  alert("server problem please try later")
                   console.log(error)
             }
 

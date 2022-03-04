@@ -57,8 +57,8 @@ function EditCarInfoModal(props) {
                               alert(res.data.message)
                         }
                   } catch (error) {
-                        alert("server problem please try later")
                         props.onHide()
+                        console.log(error);
                   }
             }
       }

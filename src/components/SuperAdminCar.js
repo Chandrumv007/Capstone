@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, CardGroup, Col, ListGroupItem, Row, ListGroup } from 'react-bootstrap'
 import axios from 'axios';
 import './Navbar.css'
@@ -25,7 +25,7 @@ function SuperAdminCar() {
                         alert(res.data.message)
                   }
             } catch (error) {
-                  alert("server problem please try later from superadmin")
+                  console.log(error);
             }
 
       }
@@ -75,4 +75,4 @@ function SuperAdminCar() {
       )
 }
 
-export default memo(SuperAdminCar)
+export default SuperAdminCar

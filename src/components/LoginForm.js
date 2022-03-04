@@ -25,6 +25,7 @@ function LoginForm(props) {
             if (Object.keys(errors).length === 0) {
                   try {
                         let res= await axios.post("http://localhost:8085/admin/loginAuthentication",adminData)
+                        console.log(res);
                   if(!res.data.error){
                         localStorage.setItem("jwtToken",res.data.token);
                         localStorage.setItem("role",res.data.role)
@@ -39,9 +40,7 @@ function LoginForm(props) {
                            seterrors({error:res.data.message})
                   }
                   } catch (error) {
-                        console.log(error);
-                        alert("internal server error")
-                        
+                        console.log(error);                        
                   }
             }
 

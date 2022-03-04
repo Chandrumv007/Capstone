@@ -42,7 +42,6 @@ function SignupForm(props) {
                               seterrors({ error: res.data.message })
                         }
                   } catch (error) {
-                        alert("internal server error")
                         console.log(error);
                   }
             }

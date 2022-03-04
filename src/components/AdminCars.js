@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Card, ListGroup, ListGroupItem, CardGroup, Row, Col } from 'react-bootstrap'
 import AddCarInfoModal from './AddCarInfoModal';
@@ -31,9 +31,8 @@ function AdminCars(props) {
                   } else {
                         alert(res.data.message)
                   }
-            } catch (error1) {
-                  alert("server problem please try later")
-                  console.log(error1)
+            } catch (error) {
+                  console.log(error)
             }
 
       }
@@ -134,4 +133,4 @@ function AdminCars(props) {
 
 
 
-export default memo(AdminCars)
+export default AdminCars
