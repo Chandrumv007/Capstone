@@ -33,6 +33,7 @@ function NavBar(props) {
                   let res = await axios.get("http://localhost:8085/user/car/search", { params: { searchData: searchData } })
                   if (!res.data.error) {
                         props.setsearchCarInfo(res.data.searchCarDetails)
+                        props.setsearchError(false)
                         props.history.push("/search")
                   } else {
                         props.setsearchError(true)
@@ -60,7 +61,7 @@ function NavBar(props) {
                   <nav className="navbar navbar-expand-lg navbar-light bg-info ">
                         {!tokenPresent ?
                               <Nav className="me-auto" >
-                                    <Link className="navbar-brand" to="/">Car Wala</Link>
+                                    <Link className="navbar-brand" to="/">Car Info</Link>
                               </Nav> : null
 
                         }
@@ -92,7 +93,7 @@ function NavBar(props) {
                                                 </li>
                                           </ul>
                                           <form onSubmit={getSearchCarsInfo} style={{ position: "relative", top: "-8px" }} className="d-flex">
-                                                <input placeholder="Type to Search" className="form-control mr-2" type="search" name="search" id="search" placeholder="Search" aria-label="Search" />
+                                                <input placeholder="Type to Search" className="form-control mr-2" type="search" name="search" id="search" aria-label="Search" />
                                                 <button onClick={(event) => { getSearchCarsInfo(event) }} style={{ position: "relative", top: "-19px" }} className="btn btn-outline-success" type="submit">Search</button>
                                           </form>
                                     </div> : null

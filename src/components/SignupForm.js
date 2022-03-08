@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 
 
 function SignupForm(props) {
+      const [showpass, setshowpass] = useState(false)
       const [signupData, setsignupData] = useState({
             username: "",
             password: "",
@@ -26,7 +27,7 @@ function SignupForm(props) {
             event.preventDefault()
             if (Object.keys(errors).length === 0) {
                   try {
-                        let res = await axios.post("http://localhost:8085/admin/signupAuthentication", signupData)
+                        let res = await axios.post("http://localhost:8085/authentication/signup", signupData)
                         console.log(res);
                         if (!res.data.error) {
                               localStorage.setItem("jwtToken", res.data.token);
@@ -35,9 +36,9 @@ function SignupForm(props) {
                               let role = localStorage.getItem("role");
                               if (role === "ROLE_SUPERADMIN") {
                                     props.history.push("/superadmin")
-                                  } else if (role === "ROLE_ADMIN") {
+                              } else if (role === "ROLE_ADMIN") {
                                     props.history.push("/admin")
-                                  }  
+                              }
                         } else {
                               seterrors({ error: res.data.message })
                         }
@@ -46,6 +47,20 @@ function SignupForm(props) {
                   }
             }
 
+      }
+      let goToLogin = () => {
+            props.history.push("/login")
+
+      }
+      let showPass=()=>{
+            if(showpass){
+                  document.getElementById('password').setAttribute("type","password");
+                  setshowpass(false);
+            }
+            else{
+                  document.getElementById('password').setAttribute("type","text");
+                  setshowpass(true); 
+            }
       }
 
       return (
@@ -66,6 +81,9 @@ function SignupForm(props) {
                                           <div className="form-group">
                                                 <label className="move" htmlFor="password">Password</label>
                                                 <input type="password" onChange={changeData} value={signupData.password} name="password" className="form-control form-control-sm" id="password" />
+                                                <span>
+                                                      <i style={{ cursor: "pointer" , position:"relative", left:"270px" ,top:"-25px" }} class="fa fa-eye" id="eye" onClick={showPass}></i>
+                                                </span>
                                                 {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
 
                                           </div>
@@ -80,6 +98,10 @@ function SignupForm(props) {
                                           </div>
                                           <button type="submit" onClick={validateData} className="btn btn-primary btn-block">SignUp</button>
                                     </form>
+                                    <br></br>
+                                    <div>
+                                          <h6 style={{ cursor: "pointer" }} onClick={goToLogin}>  Already have an Account ? Login</h6>
+                                    </div>
                               </div>
                         </div>
                   </div>

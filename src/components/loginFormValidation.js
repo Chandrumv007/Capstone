@@ -12,7 +12,7 @@ const loginFormValidation = (userData) => {
       } else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,15}$/.test(userData.password)) {
             errors.password = "*Password format Wrong ";
       }
-      if(userData.role==="Select_Role"){
+      if(userData.role===""){
             errors.role="*Please Select Role"
       }
 

@@ -1,7 +1,6 @@
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Card, ListGroup, ListGroupItem, CardGroup, Row, Col } from 'react-bootstrap'
-import axios from 'axios'
 
 
 function SearchCarResults(props) {
@@ -29,7 +28,7 @@ function SearchCarResults(props) {
                                           return (
                                                 <Col key={index} className='mt-5'>
                                                       <Card key={index} md={4} className='m-3' style={{ width: '25rem' }}>
-                                                            <Card.Img variant="top" width={"24rem"} height={"150rem"} src={car.imageURL} />
+                                                            <Card.Img variant="top" className="rounded" width={"20rem"} height={"150rem"} src={car.imageURL} />
                                                             <Card.Body>
                                                                   <Card.Title className='bg-info bg-gradient'>{car.name}</Card.Title>
                                                             </Card.Body>

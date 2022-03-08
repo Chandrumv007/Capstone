@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
 import loginFormValidation from './loginFormValidation';
-import axios from'axios';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 function LoginForm(props) {
+      const [showpass, setshowpass] = useState(false)
       const [adminData, setadminData] = useState({
             username: "",
             password: ""
@@ -20,55 +21,73 @@ function LoginForm(props) {
       let validateData = () => {
             seterrors(loginFormValidation(adminData))
       }
-      let saveData = async(event) => {
+      let saveData = async (event) => {
             event.preventDefault()
             if (Object.keys(errors).length === 0) {
                   try {
-                        let res= await axios.post("http://localhost:8085/admin/loginAuthentication",adminData)
-                        console.log(res);
-                  if(!res.data.error){
-                        localStorage.setItem("jwtToken",res.data.token);
-                        localStorage.setItem("role",res.data.role)
-                        props.login()
-                        let role = localStorage.getItem("role");
-                        if (role === "ROLE_SUPERADMIN") {
-                              props.history.push("/superadmin")
-                            } else if (role === "ROLE_ADMIN") {
-                              props.history.push("/admin")
-                            }    
-                  }else{
-                           seterrors({error:res.data.message})
-                  }
+                        let res = await axios.post("http://localhost:8085/authentication/login", adminData)
+                        if (!res.data.error) {
+                              localStorage.setItem("jwtToken", res.data.token);
+                              localStorage.setItem("role", res.data.role)
+                              props.login()
+                              let role = localStorage.getItem("role");
+                              if (role === "ROLE_SUPERADMIN") {
+                                    props.history.push("/superadmin")
+                              } else if (role === "ROLE_ADMIN") {
+                                    props.history.push("/admin")
+                              }
+                        } else {
+                              seterrors({ error: res.data.message })
+                        }
                   } catch (error) {
-                        console.log(error);                        
+                        console.log(error);
                   }
             }
 
       }
-      
+      let goToSignUp = () => {
+            props.history.push("/signup")
+
+      }
+      let showPass=()=>{
+            if(showpass){
+                  document.getElementById('password').setAttribute("type","password");
+                  setshowpass(false);
+            }
+            else{
+                  document.getElementById('password').setAttribute("type","text");
+                  setshowpass(true); 
+            }
+      }
+
       return (
             <div className="global-container">
                   <div className="card login-form">
                         <div className="card-body">
                               <h3 className="card-title text-center">Log in</h3>
                               <div className="card-text">
-                              {errors.error && <p className='alert alert-danger'>{errors.error}</p>}
+                                    {errors.error && <p className='alert alert-danger'>{errors.error}</p>}
                                     <form className='' onSubmit={saveData}>
-                                          
+
                                           <div className="form-group">
                                                 <label className="move" htmlFor="username">Username</label>
-                                                <input type="text" onChange={changeData} value={adminData.username} name="username" className="form-control form-control-sm" id="username"  />
-                                                {errors.username && <p  style={{ color: "red" }}>{errors.username}</p>}
+                                                <input type="text" onChange={changeData} value={adminData.username} name="username" className="form-control form-control-sm" id="username" />
+                                                {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
 
                                           </div>
                                           <div className="form-group">
                                                 <label className="move" htmlFor="password">Password</label>
                                                 <input type="password" onChange={changeData} value={adminData.password} name="password" className="form-control form-control-sm" id="password" />
+                                                <span>
+                                                      <i style={{ cursor: "pointer" , position:"relative", left:"270px" ,top:"-25px" }} class="fa fa-eye" id="eye" onClick={showPass}></i>
+                                                </span>
                                                 {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
 
                                           </div>
                                           <button type="submit" onClick={validateData} className="btn btn-primary btn-block">Login</button>
                                     </form>
+                                    <br></br>
+                                    <h6 style={{ cursor: "pointer" }} onClick={goToSignUp}>Don't have an Account ? SignUp</h6>
                               </div>
                         </div>
                   </div>

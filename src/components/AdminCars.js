@@ -7,7 +7,7 @@ import './Navbar.css';
 
 
 
-function AdminCars(props) {
+function AdminCars() {
       const [carsInfo, setcarsInfo] = useState([])
       const [addModelShow, setaddModelShow] = useState(false)
       const [editModelShow, seteditModelShow] = useState(false)
@@ -76,7 +76,7 @@ function AdminCars(props) {
 
       return (
             <div className=' admin'>
-                  <h1 style={{position: "relative",alignItems:"center" }}><button onClick={() => { setaddModelShow(true) }} className='btn btn-secondary'>Add Car Info</button></h1>
+            <button onClick={() => { setaddModelShow(true) }} className='btn btn-secondary mt-5'>Add Car Info</button>
                   <CardGroup >
                         <Row >
                               {carsInfo.map((car, index) => {
@@ -84,7 +84,7 @@ function AdminCars(props) {
                                     return (
                                           <Col key={index} className='mt-5'>
                                                 <Card key={index} className='m-3' md={4} style={{ width: '25rem' }}>
-                                                      <Card.Img variant="top" width={"24rem"} height={"200rem"} src={car.imageURL} />
+                                                      <Card.Img variant="top" className="rounded" width={"20rem"} height={"200rem"} src={car.imageURL} />
                                                       <Card.Body>
                                                             <Card.Title>{car.name}</Card.Title>
                                                       </Card.Body>

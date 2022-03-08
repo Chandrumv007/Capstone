@@ -12,7 +12,7 @@ import SearchCarResults from './components/SearchCarResults';
 function App() {
   const [isUser, setisUser] = useState(true) 
   const [searchCarInfo, setsearchCarInfo] = useState([])
-  const [searchError, setsearchError] = useState(false)
+  const [searchError, setsearchError] = useState(true)
 
   let login = () => {
     setisUser(false)

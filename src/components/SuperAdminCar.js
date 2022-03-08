@@ -47,7 +47,7 @@ function SuperAdminCar() {
                                     return (
                                           <Col key={index} className='mt-5'>
                                                 <Card key={index} md={4} className='m-3' style={{ width: '25rem' }}>
-                                                      <Card.Img variant="top" width={"24rem"} height={"150rem"} src={car.imageURL} />
+                                                      <Card.Img variant="top" className="rounded" width={"20rem"} height={"150rem"} src={car.imageURL} />
                                                       <Card.Body>
                                                             <Card.Title>{car.name}</Card.Title>
                                                       </Card.Body>
